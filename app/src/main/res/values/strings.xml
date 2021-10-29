@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Buscaminas</string>
+    <string name="score">Score</string>
+    <string name="username">Username</string>
+    <string name="play_again">Play again</string>
+
+    <string name="example_user1">Jugador 1</string>
+    <string name="example_score1">001</string>
+    <string name="example_user2">Jugador 2</string>
+    <string name="example_score2">002</string>
+
 </resources>
