@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Buscaminas</string>
+    <string name="text_username">Username</string>
+    <string name="prompt_username">Enter your Username</string>
+    <string name="text_null">Please, Enter a Username</string>
+    <string name="text_exit_confirm">¿Are you sure to exit?</string>
 </resources>
