@@ -34,93 +34,100 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@drawable/score_icon" />
 
-    <TableLayout
-        android:id="@+id/tableLayout"
+    <ScrollView
         android:layout_width="300dp"
         android:layout_height="400dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginEnd="56dp"
-        android:background="@drawable/border"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="180dp">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="UselessParent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/table1.1"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:background="@drawable/border"
-                android:text="@string/username"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="300dp"
+                android:layout_height="400dp"
+                android:background="@drawable/border">
 
-            <TextView
-                android:id="@+id/table1.2"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:background="@drawable/border"
-                android:text="@string/score"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:ignore="UselessParent">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="UselessParent">
+                    <TextView
+                        android:id="@+id/table1.1"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/border"
+                        android:text="@string/username"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/table2.1"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:background="@drawable/border"
-                android:text="@string/example_user1"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/table1.2"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/border"
+                        android:text="@string/score"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </TableRow>
 
-            <TextView
-                android:id="@+id/table2.2"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:background="@drawable/border"
-                android:text="@string/example_score1"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:ignore="UselessParent">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="UselessParent">
+                    <TextView
+                        android:id="@+id/table2.1"
+                        android:layout_width="150dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/border"
+                        android:text="@string/example_user1"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/table3.1"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:background="@drawable/border"
-                android:text="@string/example_user2"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/table2.2"
+                        android:layout_width="150dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/border"
+                        android:text="@string/example_score1"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+                </TableRow>
 
-            <TextView
-                android:id="@+id/table3.2"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:background="@drawable/border"
-                android:text="@string/example_score2"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:ignore="UselessParent">
 
-    </TableLayout>
+                    <TextView
+                        android:id="@+id/table3.1"
+                        android:layout_width="150dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/border"
+                        android:text="@string/example_user2"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/table3.2"
+                        android:layout_width="150dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/border"
+                        android:text="@string/example_score2"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/button"
