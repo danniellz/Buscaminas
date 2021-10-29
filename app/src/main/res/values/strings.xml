@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Buscaminas</string>
+    <string name="ModeTitle">Mode</string>
+    <string name="ezMode">Easy</string>
+    <string name="hardMode">Hard</string>
+    <string name="ThemeTitle">Theme</string>
+    <string name="SaveSetting">Save Settings </string>
 </resources>
