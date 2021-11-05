@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
@@ -17,28 +17,32 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="65dp"
         android:layout_height="70dp"
-        android:layout_marginStart="172dp"
-        android:layout_marginEnd="174dp"
         android:contentDescription="@string/score"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/score_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/score_icon"
+        tools:ignore="NotSibling" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="300dp"
         android:layout_height="400dp"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="180dp">
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -49,7 +53,9 @@
                 android:id="@+id/tableLayout"
                 android:layout_width="300dp"
                 android:layout_height="400dp"
-                android:background="@drawable/border">
+                android:isScrollContainer="true"
+                android:background="@drawable/border"
+                tools:ignore="UselessParent">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -76,55 +82,6 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:ignore="UselessParent">
-
-                    <TextView
-                        android:id="@+id/table2.1"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/border"
-                        android:text="@string/example_user1"
-                        android:textAlignment="center"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/table2.2"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/border"
-                        android:text="@string/example_score1"
-                        android:textAlignment="center"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:ignore="UselessParent">
-
-                    <TextView
-                        android:id="@+id/table3.1"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/border"
-                        android:text="@string/example_user2"
-                        android:textAlignment="center"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/table3.2"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/border"
-                        android:text="@string/example_score2"
-                        android:textAlignment="center"
-                        android:textSize="20sp" />
-                </TableRow>
-
             </TableLayout>
         </LinearLayout>
     </ScrollView>
@@ -133,13 +90,13 @@
         android:id="@+id/button"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_marginStart="155dp"
-        android:layout_marginEnd="156dp"
         android:layout_marginBottom="60dp"
         android:text="@string/play_again"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        tools:ignore="NotSibling" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
