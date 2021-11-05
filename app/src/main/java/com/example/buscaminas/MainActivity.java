@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 
 
@@ -50,17 +51,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //startActivityForResult(intent, SETTINGS_ACTIVITY);
                 break;
             case R.id.playButtonId:
+                //si el username esta vacio, error
                 if(username.isEmpty()){
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                     alertDialog.setMessage(nullValue);
                     alertDialog.setPositiveButton(android.R.string.ok, null);
                     alertDialog.show();
+                //sino, pasar a ventana de juego pasandole el usuario
                 }else{
-                    //Intent intent = new Intent(MainActivity.this, Game.class);
-                    //intent.putExtra("username", username);
-                    //startActivityForResult(intent, GAME_ACTIVITY);
+                    Intent intent = new Intent(MainActivity.this, Game.class);
+                    intent.putExtra("username", username);
+                    startActivityForResult(intent, GAME_ACTIVITY);
                 }
                 break;
+            //Salir de la aplicacion
             case R.id.exitButtonId:
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                 alertDialog.setMessage(exitConfirm);
