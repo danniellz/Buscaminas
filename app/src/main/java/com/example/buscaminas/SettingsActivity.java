@@ -27,8 +27,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     String mod;
     String them;
 
-    public static final int MAIN_ACTIVITY_1 = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //Atributos
     private ImageButton bConfig, bPlay, bExit;
     private EditText inputUsername;
-    private String nullValue, username, exitConfirm, mode, theme;
+    private String nullValue, username, exitConfirm, mode ="hard", theme= "default";
     private Intent intent;
     private ConstraintLayout mainPane;
     //ID de los intents
@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bConfig.setOnClickListener(this);
         bPlay.setOnClickListener(this);
         bExit.setOnClickListener(this);
+
+        mainPane.setBackground(getDrawable(R.drawable.main));
     }
 
     @Override
@@ -62,9 +64,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     alertDialog.show();
                 //sino, pasar a ventana de juego pasandole el usuario
                 }else{
-                    intent = new Intent(MainActivity.this, Game.class);
-                    intent.putExtra("username", username);
-                    startActivityForResult(intent, GAME_ACTIVITY);
+                        intent = new Intent(MainActivity.this, Game.class);
+                        intent.putExtra("username", username);
+                        intent.putExtra("mode", mode);
+                        intent.putExtra("theme", theme);
+                        startActivityForResult(intent, GAME_ACTIVITY);
                 }
                 break;
             //Salir de la aplicacion
@@ -92,8 +96,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(requestCode == SETTINGS_ACTIVITY){
             //si obtiene un resultado, se ha ejecutado con exito
             if(resultCode == RESULT_OK){
-                String theme = data.getStringExtra("theme");
-                String mode = data.getStringExtra("mode");
+                theme = data.getStringExtra("theme");
+                mode = data.getStringExtra("mode");
 
                 if(theme.equals("the3kings")){
                     mainPane.setBackground(getDrawable(R.drawable.reyes_magos));
