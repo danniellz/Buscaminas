@@ -15,12 +15,15 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     //Atributos
     private ImageButton bConfig, bPlay, bExit;
     private EditText inputUsername;
-    private String nullValue, username, exitConfirm;
+    private String nullValue, username, exitConfirm, mode, theme;
+    private Intent intent;
+    private ConstraintLayout mainPane;
     //ID de los intents
     public static final int SETTINGS_ACTIVITY = 2;
     public static final int GAME_ACTIVITY = 3;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mainPane = (ConstraintLayout) findViewById(R.id.mainPaneId);
         bConfig = (ImageButton) findViewById(R.id.configButtonId);
         bPlay = (ImageButton) findViewById(R.id.playButtonId);
         bExit = (ImageButton) findViewById(R.id.exitButtonId);
@@ -39,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bConfig.setOnClickListener(this);
         bPlay.setOnClickListener(this);
         bExit.setOnClickListener(this);
-
     }
 
     @Override
@@ -47,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         username = inputUsername.getText().toString();
         switch(v.getId()){
             case R.id.configButtonId:
-                    //Intent intent = new Intent(MainActivity.this, Settings.class);
-                    //startActivityForResult(intent, SETTINGS_ACTIVITY);
+                intent = new Intent(MainActivity.this, SettingsActivity.class);
+                    startActivityForResult(intent, SETTINGS_ACTIVITY);
                 break;
             case R.id.playButtonId:
                 //si el username esta vacio, error
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     alertDialog.show();
                 //sino, pasar a ventana de juego pasandole el usuario
                 }else{
-                    Intent intent = new Intent(MainActivity.this, Game.class);
+                    intent = new Intent(MainActivity.this, Game.class);
                     intent.putExtra("username", username);
                     startActivityForResult(intent, GAME_ACTIVITY);
                 }
@@ -80,5 +83,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //de que activity lo recibe y el resultado que obtiene
+        if(requestCode == SETTINGS_ACTIVITY){
+            //si obtiene un resultado, se ha ejecutado con exito
+            if(resultCode == RESULT_OK){
+                String theme = data.getStringExtra("theme");
+                String mode = data.getStringExtra("mode");
+
+                if(theme.equals("the3kings")){
+                    mainPane.setBackground(getDrawable(R.drawable.reyes_magos));
+                }
+                if(theme.equals("santa")){
+                    mainPane.setBackground(getDrawable(R.drawable.santa_claus));
+                }
+
+            }else{
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                alertDialog.setMessage("Ha ocurrido un error");
+                alertDialog.setPositiveButton(android.R.string.ok, null);
+                alertDialog.show();
+            }
+
+        }
     }
 }
