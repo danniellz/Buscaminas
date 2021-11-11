@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Buscaminas</string>
+    <string name="text_username">Username</string>
+    <string name="prompt_username">Enter your Username</string>
+    <string name="text_null">Please, Enter a Username</string>
+    <string name="text_exit_confirm">¿Are you sure to exit?</string>
+    <string name="ModeTitle">Mode</string>
+    <string name="ezMode">Easy</string>
+    <string name="hardMode">Hard</string>
+    <string name="ThemeTitle">Theme</string>
+    <string name="SaveSetting">Save Settings </string>
+    <string name="usernamelbl">User</string>
+    <string name="scorelbl">Score</string>
+
+
+
+    <string name="banderas">10</string>
+    <string name="btnActivado">Activado</string>
+    <string name="btnDesactivado">Desactivado</string>
+    <string name="btnPuesto">Bandera</string>
+    <string name="time">0</string>
+    <string name="mine">mine</string>
+    <string name="cell">cell</string>
+
+</resources>
