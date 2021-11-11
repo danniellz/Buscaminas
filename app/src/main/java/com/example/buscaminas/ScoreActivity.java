@@ -1,10 +1,13 @@
 package com.example.buscaminas;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -13,69 +16,62 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ScoreActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView titleTxt;
-    private ImageView scoreImg;
-    private TableLayout table;
-    private Button playAgainBtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        titleTxt = (TextView) findViewById(R.id.textView);
+        //Titulo
+        TextView titleTxt = findViewById(R.id.textView);
         titleTxt.setText(getString(R.string.score));
 
-        scoreImg = (ImageView) findViewById(R.id.imageView);
+        //Base de Datos
+        SQLiteDatabase database = openOrCreateDatabase("mydatadase", Context.MODE_PRIVATE, null);
+        database.execSQL("DROP TABLE IF EXISTS mydatabase;"); //BORRAR
+        database.execSQL("CREATE TABLE IF NOT EXISTS mydatabase(Username VARCHAR,Score VARCHAR);");
 
-        for (int i = 0; i <= 15; i++) {
-            String username = "Jugandor" + String.valueOf(i);
-            String score = String.valueOf(i);
-            table = (TableLayout) findViewById(R.id.tableLayout);
+        database.execSQL("INSERT INTO mydatabase VALUES('user1', '010');");
+
+        Cursor cursor = database.rawQuery("SELECT * FROM mydatabase ORDER BY score", null);
+
+        TableLayout table = findViewById(R.id.tableLayout);
+        while (cursor.moveToNext()) {
             TableRow row = new TableRow(this);
-            TextView textview1 = new TextView(this);
-            TextView textview2 = new TextView(this);
+            TextView position = new TextView(this);
+            TextView username = new TextView(this);
+            TextView score = new TextView(this);
+
+            //Añadir posicion
+            position.setText(String.valueOf(cursor.getPosition()+1));
+            position.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            position.setTextSize(20);
+            position.setBackground(getDrawable(R.drawable.border));
+            position.setTypeface(null, Typeface.BOLD);
 
             //Añadir username
-            textview1.setText(username);
-            textview1.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            textview1.setTextSize(20);
-            textview1.setBackground(getDrawable(R.drawable.border));
+            username.setText(cursor.getString(0));
+            username.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            username.setTextSize(20);
+            username.setBackground(getDrawable(R.drawable.border));
 
             //Añadir score
-            textview2.setText(score);
-            textview2.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            textview2.setTextSize(20);
-            textview2.setBackground(getDrawable(R.drawable.border));
+            score.setText(cursor.getString(1));
+            score.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            score.setTextSize(20);
+            score.setBackground(getDrawable(R.drawable.border));
 
-            row.addView(textview1);
-            row.addView(textview2);
+            //Añadir a la fila
+            row.addView(position);
+            row.addView(username);
+            row.addView(score);
             table.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
+
         }
-        String username = "Jugandor n";
-        String score = "002";
-        table = (TableLayout) findViewById(R.id.tableLayout);
-        TableRow row = new TableRow(this);
-        TextView textview1 = new TextView(this);
-        TextView textview2 = new TextView(this);
 
-        //Añadir username
-        textview1.setText(username);
-        textview1.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        textview1.setTextSize(20);
-        textview1.setBackground(getDrawable(R.drawable.border));
+        cursor.close();
 
-        //Añadir score
-        textview2.setText(score);
-        textview2.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        textview2.setTextSize(20);
-        textview2.setBackground(getDrawable(R.drawable.border));
-
-        row.addView(textview1);
-        row.addView(textview2);
-        table.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
-
-        playAgainBtn = (Button) findViewById(R.id.button);
+        //Play Again Button
+        Button playAgainBtn = findViewById(R.id.button);
         playAgainBtn.setText(getString(R.string.play_again));
         playAgainBtn.setOnClickListener(this);
     }
@@ -85,4 +81,5 @@ public class ScoreActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
 }
