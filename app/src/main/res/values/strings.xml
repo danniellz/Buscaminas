@@ -10,4 +10,17 @@
     <string name="ThemeTitle">Theme</string>
     <string name="SaveSetting">Save Settings </string>
 
+    <string name="banderas">10</string>
+    <string name="btnActivado">Activado</string>
+    <string name="btnDesactivado">Desactivado</string>
+    <string name="btnPuesto">Bandera</string>
+    <string name="time">0</string>
+    <string name="mine">mine</string>
+    <string name="cell">cell</string>
+
+    <string name="pos">#</string>
+    <string name="score">Score</string>
+
+    <string name="play_again">Play again</string>
+
 </resources>

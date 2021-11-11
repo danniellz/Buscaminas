@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bPlay.setOnClickListener(this);
         bExit.setOnClickListener(this);
 
-        mainPane.setBackground(getDrawable(R.drawable.main));
+        mainPane.setBackground(getDrawable(R.drawable.santa_main));
     }
 
     @Override
