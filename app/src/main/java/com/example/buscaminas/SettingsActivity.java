@@ -1,6 +1,7 @@
 package com.example.buscaminas;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     private TextView modeTxt;
     private TextView themeTxt;
+    private ConstraintLayout settingsPane;
     private ImageButton santaTheme;
     private ImageButton thekingsTheme;
     private RadioGroup modeChoice;
@@ -25,12 +27,12 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     String mod;
     String them;
 
-    public static final int MAIN_ACTIVITY_1 = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        settingsPane = (ConstraintLayout) findViewById(R.id.settingsPaneId);
 
         //titulos de las tablas
         modeTxt = (TextView) findViewById(R.id.modeTxt);
@@ -46,64 +48,52 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         checked = false;
         //ImgButton
         santaTheme = (ImageButton) findViewById(R.id.santaThemImBtn);
-        santaTheme.setOnClickListener(this::onClick2);
+        santaTheme.setOnClickListener(this);
         thekingsTheme = (ImageButton) findViewById(R.id.kingsThemImBtn);
-        thekingsTheme.setOnClickListener(this::onClick2);
+        thekingsTheme.setOnClickListener(this);
         //Boton
         saveSettings = (Button) findViewById(R.id.saveBtn);
         saveSettings.setOnClickListener(this);
         choice = false;
         saveSettings.setEnabled(false);
 
-
-
-
     }
 
-    private void onClick2(View v) {
-        santaTheme = (ImageButton) v;
-        if (v.getId() == R.id.santaThemImBtn) {
-            them = "santa";
-            choice = true;
-            saveSettings.setEnabled(true);
-        } else if (v.getId() == R.id.kingsThemImBtn) {
-            them =  "the3kings";
-            choice = true;
-            saveSettings.setEnabled(true);
-        }
-
-    }
-
-
-    @Override
     public void onClick(View v) {
-        Intent intent = new Intent();
-
-            intent.putExtra("mode", mod);
-            intent.putExtra("theme",them);
-
-
-        finish();
-
+        switch(v.getId()){
+            case R.id.santaThemImBtn:
+                them = "santa";
+                settingsPane.setBackground(getDrawable(R.drawable.santa_claus));
+                choice = true;
+                saveSettings.setEnabled(true);
+                break;
+            case R.id.kingsThemImBtn:
+                them =  "the3kings";
+                settingsPane.setBackground(getDrawable(R.drawable.reyes_magos));
+                choice = true;
+                saveSettings.setEnabled(true);
+                break;
+            case R.id.saveBtn:
+                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+                intent.putExtra("mode", mod);
+                intent.putExtra("theme",them);
+                setResult(RESULT_OK, intent);
+                finish();
+                break;
+        }
     }
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int checkId) {
-
         switch (checkId) {
             case R.id.ezMode:
                 mod = "easy";
                 checked = true;
-
                 break;
             case R.id.hardMode:
                 mod = "hard";
                 checked = true;
-
                 break;
-
         }
-
-
     }
 }

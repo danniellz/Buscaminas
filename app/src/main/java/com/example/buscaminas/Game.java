@@ -1,6 +1,7 @@
 package com.example.buscaminas;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +12,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class Game extends AppCompatActivity implements View.OnClickListener {
-    private GridLayout gameGrid;
+    private ConstraintLayout gameGrid;
     private ImageButton box;
-    private String username;
+    private String username, mode, theme;
     private TextView usernameText;
 
     @Override
@@ -24,14 +25,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         //Recoger el usuario del MainActivity
         Bundle extras = getIntent().getExtras();
         username = extras.getString("username");
-
-        //IDs
-        gameGrid = (GridLayout) findViewById(R.id.gameGridId);
-        usernameText = (TextView) findViewById(R.id.textUsernameId);
-
-        //Establecer el nombre de usuario en la ventana
-        usernameText.setText(username);
-
+        mode=extras.getString("mode");
+        theme=extras.getString("theme");
     }
 
     @Override

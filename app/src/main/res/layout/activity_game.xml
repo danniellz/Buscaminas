@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.gridlayout.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/gameGridId"
@@ -7,27 +7,4 @@
     android:layout_height="match_parent"
     app:columnCount="9"
     app:rowCount="9"
-    tools:context=".Game">
-
-    <TextView
-        android:id="@+id/textUsernameId"
-        android:layout_width="wrap_content"
-        android:text="prueba"
-        android:textSize="24sp"
-        app:layout_columnSpan="8"
-        app:layout_gravity="left" />
-
-    <TextView
-        android:id="@+id/textScoreId"
-        android:text="prueba2"
-        android:textSize="24sp"
-        app:layout_gravity="right" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="65dp"
-        android:layout_height="63dp"
-        app:layout_columnSpan="9"
-        app:layout_gravity="center_horizontal" />
-
-</androidx.gridlayout.widget.GridLayout>
+    tools:context=".Game" />
